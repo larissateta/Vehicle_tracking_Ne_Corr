@@ -1,0 +1,130 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+.sub-container{
+  background-color: white;
+  width: 35%;
+  /* text-align: center; */
+  border-radius: 2%;
+  padding: 15px 20px;
+
+}
+.signup{
+  height: 90%;
+}
+.login{
+  height: 65%;
+
+}
+.sub-container h1, h4{
+  margin-top: 0.5em;
+  text-align: center;
+}
+.logo-container{
+  width: 30%;
+  color: white;
+}
+.container{
+  background-color: dodgerblue;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.error{
+  text-align: center;
+  color: red;
+  font-size: 12px;
+  margin-left: 12px
+}
+.inputs-container{
+  margin-top: 0.5em;
+  margin-left: 2em;
+  padding-right: 3em;
+
+}
+input{
+  display: block;
+  width: 90%;
+  padding: 14px 14px;
+  margin-top: 1em;
+  border: 1px solid #DFE0EB;
+  background-color: #fafbfc;
+  border-radius: 5px;
+
+}
+.btn{
+  background-color: dodgerblue;
+  border: none;
+  padding: 16px 14px;
+  color: white;
+  margin-top: 2em;
+  border-radius:5px;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: dodgerblue;
+}
+
+.row label{
+  display: block;
+  font-weight: 700;
+  font-size: 12px;
+  color: #adadb3  ;
+  margin-left: 1em;
+  
+}
+.row{
+  /* margin-top: 0.3em; */
+  margin-right: 1em;
+
+}
+
+/* SIDEBAR */
+
+.flex-container{
+  display: flex;
+}
+.sidebar{
+  background-color: #fafbfc;
+  border: 1px solid #DFE0EB;
+  height: 100vh;
+  width: 15%;
+  padding: 10px;
+  position: fixed;
+}
+.sidebar-items{
+  margin-top: 4em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.logout-btn{
+  margin-top: 15em;
+}
+.sub{
+  padding: 2em;
+  margin-left: 17em;
+}
+.item{
+  padding-left: 15px;
+  height: 2em;
+  padding-top: 10px;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+.active{
+  background-color: dodgerblue;
+  border-radius: 5px;
+  color: white;
+  font-weight:400;
+}
+.create-btn{
+  display: flex;
+}
+.car{
+  margin-left: 60em;
+}

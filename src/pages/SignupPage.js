@@ -6,6 +6,7 @@ import authApi from "../api/auth"
 import { useNavigate } from "react-router-dom"
 import authStorage from "../auth/storage"
 import ErrorMessage from "../components/ErrorMessage"
+import logo from "../assets/RRA_Logo_home.png"
 
 const validationSchema = yup.object().shape({
     name: yup.string().required().label("Full Name"),
@@ -43,9 +44,10 @@ const SignupPage = ()=>{
         navigate("/dashboard");
     }
     return(
-        <div className="container">
+        <div className="container1">
             <div className="logo-container">
-                <h1>VEHICLE <span style={{color: "black"}}>TRACKER</span></h1>
+                {/* <h1>VEHICLE <span style={{color: "black"}}>TRACKER</span></h1> */}
+                <img src={logo} alt="logo"/>
             </div>
             <div className="sub-container signup">
 
@@ -104,10 +106,10 @@ const SignupPage = ()=>{
                                 type="text"
                                 onChange={handleChange("email")}
                                 onBlur={() => setFieldTouched("email")}
-                                placeholder="Email Address"
+                                placeholder="Email"
                                 />
                                 {touched.email && <ErrorMessage text={errors.email}/>}
-                            </div>
+                            </div> 
                             <div className="row">
                                 <label htmlFor="password">Password</label>
                                 <input

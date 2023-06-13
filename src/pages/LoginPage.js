@@ -7,6 +7,7 @@ import authApi from "../api/auth";
 import authStorage from "../auth/storage";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import logo from "../assets/RRA_Logo_home.png"
 
 const validationSchema = yup.object().shape({
     email: yup.string().required().email(),
@@ -24,7 +25,6 @@ const LoginPage =()=>{
         password
     })=>{
         setLoading(true);
-        const mail = email.toLowerCase();
         const result = await authApi.login(
             email,
             password
@@ -41,9 +41,10 @@ const LoginPage =()=>{
       }, [navigate]);
 
     return(
-        <div className="container">
+        <div className="container1">
             <div className="logo-container">
-                <h1>VEHICLE <span style={{color: "black"}}>TRACKER</span></h1>
+                {/* <h1>VEHICLE <span style={{color: "black"}}>TRACKER</span></h1> */}
+                <img src={logo} alt="logo" />
             </div>
             <div className="sub-container login">
                 <h1 style={{marginBottom: 50}}>Log into your account</h1>
@@ -66,12 +67,13 @@ const LoginPage =()=>{
                             {error && <ErrorMessage text={error} />}
                         </div>
                         <div className="row">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email" className="label1">Email</label>
                             <input
                             type="text"
                             onChange={handleChange("email")}
                             onBlur={() => setFieldTouched("email")}
                             placeholder="Email"
+                            className="input1"
                             />
                             {touched.email && <ErrorMessage text={errors.email}/>}
                         </div>
@@ -85,6 +87,7 @@ const LoginPage =()=>{
                                 />
                                 {touched.password && <ErrorMessage text={errors.password}/>}
                             </div>
+                            
                         <Button type={"submit"} onClick={handleSubmit} text={loading ? "Loading.....": "Submit"} width={100}/>
                   </div>   
                     )}

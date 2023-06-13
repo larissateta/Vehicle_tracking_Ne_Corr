@@ -9,6 +9,7 @@
   /* text-align: center; */
   border-radius: 2%;
   padding: 15px 20px;
+  border: 1px solid #DFE0EB;
 
 }
 .signup{
@@ -19,15 +20,15 @@
 
 }
 .sub-container h1, h4{
-  margin-top: 0.5em;
+  margin-top: 1em;
   text-align: center;
 }
 .logo-container{
   width: 30%;
   color: white;
+  margin-right: 15em;
 }
-.container{
-  background-color: dodgerblue;
+.container1{
   display: flex;
   height: 100vh;
   width: 100%;
@@ -41,12 +42,12 @@
   margin-left: 12px
 }
 .inputs-container{
-  margin-top: 0.5em;
+  margin-top: 1em;
   margin-left: 2em;
   padding-right: 3em;
 
 }
-input{
+input, select{
   display: block;
   width: 90%;
   padding: 14px 14px;
@@ -64,18 +65,27 @@ input{
   margin-top: 2em;
   border-radius:5px;
   cursor: pointer;
+  font-size: 11px;
 }
 a {
   text-decoration: none;
   color: dodgerblue;
 }
+.label1{
+  display: block;
+  width: 0px;
 
+}
+.input1{
+  margin-top: 2em;
+}
 .row label{
   display: block;
   font-weight: 700;
   font-size: 12px;
   color: #adadb3  ;
   margin-left: 1em;
+  
   
 }
 .row{
@@ -104,27 +114,83 @@ a {
 }
 .logout-btn{
   margin-top: 15em;
+  font-size: 14px;
 }
 .sub{
   padding: 2em;
   margin-left: 17em;
 }
-.item{
+.item1{
   padding-left: 15px;
-  height: 2em;
-  padding-top: 10px;
+  height: 3.5em;
+  padding-top: 1em;
   margin-bottom: 1em;
   cursor: pointer;
+  font-size: 13px;
+  
 }
-.active{
+.activ{
   background-color: dodgerblue;
   border-radius: 5px;
   color: white;
   font-weight:400;
+}
+.activ .icon{
+  color: white;
 }
 .create-btn{
   display: flex;
 }
 .car{
   margin-left: 60em;
+}
+
+.popup{
+  background-color: #fafbfc;
+  position: fixed;
+  height: 58em;
+  width: 60em;
+  border-radius: 5px;
+  border: 1px solid #DFE0EB;
+  margin-top: 2em;
+  margin-left: 3em;
+  padding-left: 4em;
+  padding-top: 2em;
+  top: 1em;
+  left: 23%;
+  transform: translate(13%, 1%);
+  
+}
+.flex-display{
+  display: flex;
+}
+.flex-display label{
+  margin-top: 0em;
+}
+.icon{
+  margin-right: 1em;
+  
+}
+.close-btn{
+  margin-left: 10em;
+  margin-top: 0.4em;
+  font-size: 15px;
+  cursor: pointer;
+}
+.create{
+  width: 70%;
+}
+.create input{
+  width: 50em;
+}
+table{
+  margin-left: 15em;
+  width: 40px;
+}
+.action{
+  display: flex;
+}
+.action div{
+  padding-left: 1em;
+  width: 100%;
 }

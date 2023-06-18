@@ -8,6 +8,8 @@ import * as Yup from "yup"
 import ErrorMessage from "../components/ErrorMessage";
 import ownerApi from "../api/owners";
 import carsApi from "../api/cars";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const validationSchema = Yup.object().shape({
     chasisNumber: Yup.string().required().label("chasisNumber"),
@@ -90,132 +92,144 @@ const VehiclesPage = ()=>{
     useEffect(() => {
         fetchOwners();
       }, []);
+
+
+    const handleDelete = async (id)=>{
+        try{
+            await carsApi.deleteCar(id);
+            fetchCars();
+        }catch(e){
+            console.log("Error Deleting Car");
+            console.error(e);
+        }
+    }
     return(
-        <div>
+        <div className="flex-container">
             <Sidebar user={user} activeItem="vehicles"/>
-            <div className="create-btn" style={{marginLeft: 300, paddingTop: 30}}>
-                <div className="owner">
-                    <Button text={"Register Car"} onClick={handleAddClick}/>
-                </div>
-                {showPopup && (
-                    <div className="popup">
-                        <div className="flex-display">
-                        <div className="create">
-                            <h1 style={{marginBottom: 25, marginTop: 10}}>Register Car</h1>
-                            <Formik 
-                            initialValues={{
-                                chasisNumber: "", 
-                                manufacturer: "", 
-                                manufactureYear: "", 
-                                price:"",
-                                model: "",
-                                owner:""
-                            }}
-                            onSubmit={(values) => handleRegister(values)}
-                            validationSchema={validationSchema}
-                            >
-                                {({
-                                    handleSubmit,
-                                    handleChange,
-                                    setFieldValue,
-                                    setFieldTouched,
-                                    touched,
-                                    errors,
-                                    values
-                                })=>(
-                                    <div>
-                                        <div className="row" >
-                                            <label htmlFor="chasis">Chasis Number</label>
-                                            <input 
-                                            type={"text"} 
-                                            placeholder="Chasis Number" 
-                                            onChange={handleChange("chasisNumber")} 
-                                            onBlur={()=> setFieldTouched("chasisNumber")} 
-                                            />
-                                            {touched.chasisNumber && <ErrorMessage text={errors.chasisNumber}/>}
-                                        </div>
-                                        <div className="row" >
-                                            <label htmlFor="manufacturer">Manufacture Company</label>
-                                            <input 
-                                            type={"text"} 
-                                            placeholder="Manufacture Company"
-                                            onChange={handleChange("manufacturer")}
-                                            onBlur={()=> setFieldTouched("manufacturer")}
-                                            />
-                                            {touched.manufacturer && <ErrorMessage text={errors.manufacturer}/>}
-                                        </div>
-                                        <div className="row" >
-                                            <label htmlFor="year">Manufacture Year</label>
-                                            <input 
-                                            type={"text"} 
-                                            placeholder="Manufacturer Year"
-                                            onChange={handleChange("manufactureYear")}
-                                            onBlur={()=> setFieldTouched("manufactureYear")}
-                                            />
-                                            {touched.manufactureYear && <ErrorMessage text={errors.manufactureYear}/>}
-                                        </div>
-                                        <div className="row" >
-                                            <label htmlFor="price">Price</label>
-                                            <input 
-                                            type={"text"} 
-                                            placeholder="Price"
-                                            onChange={handleChange("price")}
-                                            onBlur={()=> setFieldTouched("price")}
-                                            />
-                                            {touched.price && <ErrorMessage text={errors.price}/>}
-                                        </div>
-                                        <div className="row" >
-                                            <label htmlFor="model">Model</label>
-                                            <input 
-                                            type={"text"} 
-                                            placeholder="Model"
-                                            onChange={handleChange("model")}
-                                            onBlur={()=> setFieldTouched("model")}
-                                            />
-                                            {touched.model && <ErrorMessage text={errors.model}/>}
-                                        </div>
-                                        <div className="row" >
-                                            <label htmlFor="owner">Owner</label>
-                                            <select
-                                                id="owner"
-                                                name="owner"
-                                                onChange={(event) => {
+            <div className="sub mt-4">
+                <div className="mt-5 mx-3" style={{ paddingTop: 30, marginLeft: 70}}>
+                    <div className="mt-4 mx-3" >
+                        <Button text={"Register Car"} onClick={handleAddClick}/>
+                    </div>
+                    {showPopup && (
+                        <div className="popup">
+                            <div className="flex-display">
+                                <div className="create">
+                                    <h1 style={{marginBottom: 25, marginTop: 10}}>Register Car</h1>
+                                    <Formik 
+                                    initialValues={{
+                                        chasisNumber: "", 
+                                        manufacturer: "", 
+                                        manufactureYear: "", 
+                                        price:"",
+                                        model: "",
+                                        owner:""
+                                    }}
+                                    onSubmit={(values) => handleRegister(values)}
+                                    validationSchema={validationSchema}
+                                    >
+                                        {({
+                                            handleSubmit,
+                                            handleChange,
+                                            setFieldValue,
+                                            setFieldTouched,
+                                            touched,
+                                            errors,
+                                            values
+                                        })=>(
+                                            <div>
+                                                <div className="row" >
+                                                    <label htmlFor="chasis">Chasis Number</label>
+                                                    <input 
+                                                    type={"text"} 
+                                                    placeholder="Chasis Number" 
+                                                    onChange={handleChange("chasisNumber")} 
+                                                    onBlur={()=> setFieldTouched("chasisNumber")} 
+                                                    />
+                                                    {touched.chasisNumber && <ErrorMessage text={errors.chasisNumber}/>}
+                                                </div>
+                                                <div className="row" >
+                                                    <label htmlFor="manufacturer">Manufacture Company</label>
+                                                    <input 
+                                                    type={"text"} 
+                                                    placeholder="Manufacture Company"
+                                                    onChange={handleChange("manufacturer")}
+                                                    onBlur={()=> setFieldTouched("manufacturer")}
+                                                    />  
+                                                    {touched.manufacturer && <ErrorMessage text={errors.manufacturer}/>}
+                                                </div>
+                                                <div className="row" >
+                                                    <label htmlFor="year">Manufacture Year</label>
+                                                    <input 
+                                                    type={"text"} 
+                                                    placeholder="Manufacturer Year"
+                                                    onChange={handleChange("manufactureYear")}
+                                                    onBlur={()=> setFieldTouched("manufactureYear")}
+                                                    />
+                                                    {touched.manufactureYear && <ErrorMessage text={errors.manufactureYear}/>}
+                                                </div>
+                                                <div className="row" >
+                                                    <label htmlFor="price">Price</label>
+                                                    <input 
+                                                    type={"text"} 
+                                                    placeholder="Price"
+                                                    onChange={handleChange("price")}
+                                                    onBlur={()=> setFieldTouched("price")}
+                                                    />
+                                                    {touched.price && <ErrorMessage text={errors.price}/>}
+                                                </div>
+                                                <div className="row" >
+                                                    <label htmlFor="model">Model</label>
+                                                    <input 
+                                                    type={"text"} 
+                                                    placeholder="Model"
+                                                    onChange={handleChange("model")}
+                                                    onBlur={()=> setFieldTouched("model")}
+                                                    />
+                                                    {touched.model && <ErrorMessage text={errors.model}/>}
+                                                </div>
+                                                <div className="row" >
+                                                    <label htmlFor="owner">Owner</label>
+                                                    <select
+                                                    id="owner"
+                                                    name="owner"
+                                                    onChange={(event) => {
                                                     handleChange("owner")(event);
                                                     setFieldValue("owner", event.target.value);
-                                                }}
-                                                onBlur={() => setFieldTouched("owner")}
-                                                value={values.owner}
-                                                >
-                                                <option value="">Select Owner</option>
-                                                {owners.map((owner, index) => (
+                                                    }}
+                                                    onBlur={() => setFieldTouched("owner")}
+                                                    value={values.owner}
+                                                    >
+                                                    <option value="">Select Owner</option>
+                                                    {owners.map((owner, index) => (
                                                     <option value={owner._id} key={index}>
                                                     {owner.name}
                                                     </option>
-                                                ))}
-                                            </select>
-                                            {touched.owner && <ErrorMessage text={errors.owner}/>}
-                                        </div>  
-                                        <Button type={"submit"} onClick={handleSubmit} text={loading ? "Loading.....": "Create"} width={100}/>
+                                                    ))}
+                                                    </select>
+                                                    {touched.owner && <ErrorMessage text={errors.owner}/>}
+                                                </div>  
+                                                <Button type={"submit"} onClick={handleSubmit} text={loading ? "Loading.....": "Create"} width={100}/>
 
-                                    </div>
-                                        
-                                )}
+                                            </div>  
 
-                            </Formik>
+                                    )}
+
+                                    </Formik>
                             
-                        </div>
+                                </div>
                                                 
-                        <div onClick={handleClosePopup}>
-                            <p className="close-btn">X</p>
-                        </div>
-                        </div>
+                                <div onClick={handleClosePopup}>
+                                    <p className="close-btn">X</p>
+                                </div>
+                            </div>
 
 
-                    </div>
+                        </div>
                 )}
             </div>
-            <div>
-            <table className="table" style={{width: 900, marginLeft: 300, marginTop: 50}}>
+            <div className="table-responsive">
+                <table className="table" style={{marginLeft:60, marginTop: 50, tableLayout: "fixed"}}>
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -239,19 +253,24 @@ const VehiclesPage = ()=>{
                             <td>{car.plateNumber}</td>
                             <td>{car.model}</td>
                             <td className="action">
-                                <div>
-                                <Button text={"Edit"} />
+                                <div >
+                                {/* <Button text={"Edit"} /> */}
+                                <FontAwesomeIcon icon={faEdit} className="pt-3 px-3 pb-4" style={{fontSize: 15,cursor: "pointer"}} />
                                 </div>
-                                <div>
-                                <Button text={"Delete"}/>
+                                <div >
+                                <FontAwesomeIcon icon={faTrash} className="pt-3 px-3 pb-4" style={{fontSize: 15, cursor: "pointer"}} color={" #ff8390"} onClick={()=> handleDelete(car._id)}/>
                                 </div>
+
 
                             </td>
                     </tr>
                     ))}
                 </tbody>
-                </table>
+                </table>    
             </div>
+
+        </div>
+            
         </div>
     )
 }

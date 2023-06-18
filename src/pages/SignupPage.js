@@ -101,12 +101,13 @@ const SignupPage = ()=>{
                                 {touched.NID && <ErrorMessage text={errors.NID}/>}
                             </div>
                             <div className="row">
-                                <label htmlFor="email">Email</label>
+                                <label htmlFor="email" >Email</label>
                                 <input
                                 type="text"
                                 onChange={handleChange("email")}
                                 onBlur={() => setFieldTouched("email")}
                                 placeholder="Email"
+                                className="mt-2 mx-1"
                                 />
                                 {touched.email && <ErrorMessage text={errors.email}/>}
                             </div> 

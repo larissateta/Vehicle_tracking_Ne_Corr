@@ -84,6 +84,7 @@ const LoginPage =()=>{
                                 onChange={handleChange("password")}
                                 onBlur={() => setFieldTouched("password")}
                                 placeholder="Password"
+                                className="mx-3"
                                 />
                                 {touched.password && <ErrorMessage text={errors.password}/>}
                             </div>

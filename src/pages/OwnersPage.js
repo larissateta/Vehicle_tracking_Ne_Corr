@@ -7,6 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup"
 import ErrorMessage from "../components/ErrorMessage";
 import ownerApi from "../api/owners";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().label("name"),
@@ -51,7 +53,6 @@ const OwnersPage = ()=>{
     const fetchOwners = async ()=> {
         try{
             const result = await ownerApi.getOwners();
-            // console.log(JSON.stringify(result))
             console.log(result.owners)
 
             setOwners(result.owners || []);
@@ -64,11 +65,22 @@ const OwnersPage = ()=>{
     useEffect(() => {
         fetchOwners();
       }, []);
+
+      const handleDelete = async (id)=>{
+        try{
+            await ownerApi.deleteOwner(id);
+            fetchOwners();
+        }catch(e){
+            console.log("Error deleting Owner");
+            console.error(e);
+        }
+      }
     return(
-        <div>
+        <div className="flex-container">
             <Sidebar user={user} activeItem="owners"/>
-            <div className="create-btn" style={{marginLeft: 300, paddingTop: 30}}>
-                <div className="owner">
+            <div className="sub mt-4">
+            <div style={{ paddingTop: 30, marginLeft: 60}}>
+                <div className="mt-5 mx-3">
                     <Button text={"Create Car Owner"} onClick={handleAddClick}/>
                 </div>
                 {showPopup && (
@@ -147,8 +159,8 @@ const OwnersPage = ()=>{
                     </div>
                 )}
             </div>
-            <div>
-            <table className="table" style={{width: 900, marginLeft: 300, marginTop: 50}}>
+            <div className="table-responsive">
+            <table className="table" style={{ marginLeft: 60, marginTop: 50, tableLayout: "fixed"}}>
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -168,11 +180,12 @@ const OwnersPage = ()=>{
                             <td>{owner.phone}</td>
                             <td>{owner.address}</td>
                             <td className="action">
-                                <div>
-                                <Button text={"Edit"} />
+                                <div >
+                                {/* <Button text={"Edit"} /> */}
+                                <FontAwesomeIcon icon={faEdit} className="mt-3" style={{fontSize: 15,cursor: "pointer"}}/>
                                 </div>
-                                <div>
-                                <Button text={"Delete"}/>
+                                <div >
+                                <FontAwesomeIcon icon={faTrash} className="mt-3" style={{fontSize: 15, cursor: "pointer"}} color={" #ff8390"} onClick={()=> handleDelete(owner._id)}/>
                                 </div>
 
                             </td>
@@ -180,7 +193,9 @@ const OwnersPage = ()=>{
                     ))}
                 </tbody>
                 </table>
+            </div>                
             </div>
+
         </div>
     )
 }

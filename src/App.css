@@ -46,25 +46,34 @@
   padding-right: 3em;
 
 }
-input, select{
+/* input, select{
   display: block;
   width: 90%;
   padding: 14px 14px;
   margin-top: 1em;
   border: 1px solid #DFE0EB;
   background-color: #fafbfc;
-  border-radius: 5px;
+  border-radius: 5px; */
 
+/* } */
+.row input, .row select{
+  display: block;
+  width: 85%;
+  padding: 8px 14px;
+  margin-top: 1em;
+  border: 1px solid #DFE0EB;
+  background-color: #fafbfc;
+  border-radius: 5px;
 }
-.btn{
-  background-color: dodgerblue;
+.button{
   border: none;
+  background-color: dodgerblue;
   padding: 16px 14px;
   color: white;
-  margin-top: 2em;
-  border-radius:5px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 11px;
+  margin-top: 2em;
 }
 a {
   text-decoration: none;
@@ -152,11 +161,11 @@ a {
 }
 .sub{
   padding: 2em;
-  margin-left: 17em;
+  margin-left: 12em;
 }
 .item1{
   padding-left: 15px;
-  height: 2.5em;
+  height: 3.5em;
   padding-top: 1em;
   margin-bottom: 1em;
   cursor: pointer;
@@ -183,7 +192,7 @@ a {
   background-color: #fafbfc;
   position: fixed;
   height: 58em;
-  width: 60em;
+  width: 50em;
   border-radius: 5px;
   border: 1px solid #DFE0EB;
   margin-top: 2em;
@@ -215,7 +224,7 @@ a {
   width: 70%;
 }
 .create input{
-  width: 50em;
+  width: 40em;
 }
 .action{
   display: flex;
@@ -232,21 +241,22 @@ table {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
-  width: 90em;
+  width: 75em;
   table-layout: fixed;
-  margin-left: 45; 
+  margin-left: 0; 
   margin-top: 50; 
   table-layout: fixed;
+  font-size: 14px;
 }
 
 table tr {
   background-color: #fafbfc;
   border: 1px solid #DFE0EB;
-  padding: 3em;
+  /* padding: 3em; */
 }
 table th,
 table td {
-  padding: 1em;
+  padding: .55em;
   text-align: center;
 }
 
@@ -254,6 +264,7 @@ table th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
+  color: dodgerblue;
 }
 
 .menu-toggle{
